@@ -3,7 +3,7 @@ import { useEffect,useCallback } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { useSSO } from '@clerk/clerk-expo'
 import Colors from "@/services/Colors";
-import { useUser } from '@clerk/clerk-expo';
+import { useUser } from '@clerk/clerk-expo'; 
 import * as AuthSession from 'expo-auth-session'
 
 import * as WebBrowser from 'expo-web-browser'
@@ -90,12 +90,13 @@ const onPress = useCallback(async () => {
         data:{
           fullName:user?.fullName,
           email:user?.primaryEmailAddress?.emailAddress
-
         }
       })
       console.log(result.data)
+      router.replace('/tabs/Home')
     } catch (error) {
       console.log(error)
+      router.replace('/tabs/Home')
     }
   }
 
