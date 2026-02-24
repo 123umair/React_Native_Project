@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "fullName": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "email": {
       "type": "email",
