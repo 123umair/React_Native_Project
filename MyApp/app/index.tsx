@@ -3,11 +3,11 @@ import { useEffect,useCallback } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { useSSO } from '@clerk/clerk-expo'
 import Colors from "@/services/Colors";
-import { useUser } from '@clerk/clerk-expo'; 
+import { useUser } from '@clerk/clerk-expo';
 import * as AuthSession from 'expo-auth-session'
+import { axiosClient } from "@/services/GlobalApi";
 
 import * as WebBrowser from 'expo-web-browser'
-import { axiosClient } from "@/services/GlobalApi";
 
 
 
@@ -32,7 +32,7 @@ const { startSSOFlow } = useSSO()
 const navigation=useNavigation()
 const router = useRouter()
 const {user}=useUser()
-
+console.log(user)
 useEffect(() => {
   navigation.setOptions({headerShown: false})
 }, [])
@@ -58,11 +58,11 @@ const onPress = useCallback(async () => {
             if (session?.currentTask) {
               console.log(session?.currentTask)
               // Navigate to Home Screen
-              router.push('/')
+              router.replace('/tabs/Home')
               return
             }
  // Navigate to Home Screen
-            router.push('/')
+            router.replace('/tabs/Home')
           },
         })
       } else {
@@ -76,8 +76,7 @@ const onPress = useCallback(async () => {
       console.error(JSON.stringify(err, null, 2))
     }
   }, [])
-
-  useEffect(() => {
+   useEffect(() => {
     user&&CreateNewUser();
     
   }, [user])
