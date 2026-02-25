@@ -26,6 +26,12 @@
         "videos",
         "audios"
       ]
+    },
+    "buisness_lists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::buisness-list.buisness-list",
+      "mappedBy": "category"
     }
   }
 }

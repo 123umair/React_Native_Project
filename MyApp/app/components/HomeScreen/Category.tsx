@@ -4,7 +4,7 @@ import { axiosClient } from '@/services/GlobalApi'
 import Colors from '@/services/Colors'
 
 
-type categoryType = {
+export type categoryType = {
     name:string,
     premium:boolean,
     icon:{url:string}
@@ -49,6 +49,7 @@ export default function Category() {
             alignItems:'center',
             padding:4,
             backgroundColor:Colors.WHITE,
+          
             margin:3,
             borderRadius:10,
             height:85,
