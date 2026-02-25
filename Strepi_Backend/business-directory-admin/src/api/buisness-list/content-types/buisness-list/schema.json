@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buisness_lists",
+  "info": {
+    "singularName": "buisness-list",
+    "pluralName": "buisness-lists",
+    "displayName": "BuisnessList"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "premium": {
+      "type": "boolean"
+    },
+    "createdby": {
+      "type": "email"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "buisness_lists"
+    }
+  }
+}
