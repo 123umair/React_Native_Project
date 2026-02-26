@@ -20,12 +20,20 @@ export default function BusinessList() {
   },[])
   const GetBusinessListByCategory =async () =>{
     setLoading(true);
-   const result = await axiosClient.get('/buisness-lists?filters[category][name][$eq]=' + categoryName + '&populate=*');
-    setBuisnessList(result?.data?.data);
-    setOriginalBusinessList(result?.data?.data);
-    
-    setLoading(false)
+    try {
+      const category = Array.isArray(categoryName) ? categoryName[0] : categoryName;
+      const result = await axiosClient.get('/buisness-lists?filters[category][name][$eq]=' + encodeURIComponent(category ?? '') + '&populate=*');
+      setBuisnessList(result?.data?.data ?? []);
+      setOriginalBusinessList(result?.data?.data ?? []);
+    } catch (error) {
+      console.error('Failed to fetch business list:', error);
+      setBuisnessList([]);
+      setOriginalBusinessList([]);
+    } finally {
+      setLoading(false);
+    }
   }
+
 
   const onSearchFilter=(searchInputValue:string)=>{
     if(!searchInputValue)
@@ -58,7 +66,7 @@ export default function BusinessList() {
       alignItems:'center',
       gap:5
     }}>
-      <TouchableOpacity onPress={()=>router.back()}><Ionicons name="arrow-back-outline" size={24} color="white" /></TouchableOpacity>
+      <TouchableOpacity onPress={()=>router.back()}></TouchableOpacity>
        <Text style={{
         marginTop:5,
         fontFamily:'appFontBold',
@@ -87,7 +95,7 @@ export default function BusinessList() {
    onRefresh={()=>GetBusinessListByCategory()}
    refreshing={loading}
    renderItem = {({item,index})=>(
-    <BusinessListCard business={item} key={index} />
+    <BusinessListCard business={item} />
    )}
 
    />
