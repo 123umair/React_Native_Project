@@ -4,7 +4,7 @@ import { axiosClient } from '@/services/GlobalApi'
 import Colors from '@/services/Colors'
 import { categoryType } from './Category'
 
-type BusinessType={
+export type BusinessType={
     name:string,
     address:string,
     premium:boolean,
