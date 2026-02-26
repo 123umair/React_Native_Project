@@ -20,7 +20,7 @@ export default function BusinessListCard({business}:Props) {
         gap:10
 
         }}>
-      <Image source={{uri:business?.images[0]?.url}}
+   <Image source={{uri:business?.images?.[0]?.url}}
       style={{
         width:120,
         height:120,
