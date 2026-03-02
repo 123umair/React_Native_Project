@@ -32,7 +32,7 @@ const { startSSOFlow } = useSSO()
 const navigation=useNavigation()
 const router = useRouter()
 const {user}=useUser()
-console.log(user,'loging in ')
+console.log(user,'loge in')
 useEffect(() => {
   navigation.setOptions({headerShown: false})
 }, [])
