@@ -66,7 +66,7 @@ export default function BusinessList() {
       alignItems:'center',
       gap:5
     }}>
-      <TouchableOpacity onPress={()=>router.back()}></TouchableOpacity>
+      <TouchableOpacity onPress={()=>router.back()}><Ionicons name="arrow-back-outline" size={24} color="white" /></TouchableOpacity>
        <Text style={{
         marginTop:5,
         fontFamily:'appFontBold',

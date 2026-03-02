@@ -460,11 +460,13 @@ export interface ApiBuisnessListBuisnessList
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
     premium: Schema.Attribute.Boolean;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    website: Schema.Attribute.String;
   };
 }
 
@@ -528,6 +530,36 @@ export interface ApiSliderSlider extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUserFavoriteUserFavorite
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'user_favorites';
+  info: {
+    displayName: 'UserFavorite';
+    pluralName: 'user-favorites';
+    singularName: 'user-favorite';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    businessid: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-favorite.user-favorite'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    userEmail: Schema.Attribute.Email;
   };
 }
 
@@ -1076,6 +1108,7 @@ declare module '@strapi/strapi' {
       'api::buisness-list.buisness-list': ApiBuisnessListBuisnessList;
       'api::category.category': ApiCategoryCategory;
       'api::slider.slider': ApiSliderSlider;
+      'api::user-favorite.user-favorite': ApiUserFavoriteUserFavorite;
       'api::user-list.user-list': ApiUserListUserList;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
