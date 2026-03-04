@@ -1,8 +1,9 @@
-import { View, Text , Image,ActivityIndicator, FlatList,  } from 'react-native'
+import { View, Text , Image,ActivityIndicator, FlatList, TouchableOpacity,  } from 'react-native'
 import React, {useState,useEffect} from 'react'
 import { axiosClient } from '@/services/GlobalApi'
 import Colors from '@/services/Colors'
 import { categoryType } from './Category'
+import { useRouter } from 'expo-router'
 
 export type BusinessType={
     name:string,
@@ -19,9 +20,11 @@ type ImagesType={
     url:string
 }
 export default function PopularBusinessList() {
+  
 
     const [buisnesslist,setBuisnessList] = useState<BusinessType[]>([])
     const [loading,setLoading]=useState(false)
+    const router = useRouter()
     
     useEffect(()=>{
         GetPopularBuisnessList()
@@ -67,7 +70,13 @@ export default function PopularBusinessList() {
     
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <View style={{ width: 230, marginRight: 10, 
+        <TouchableOpacity 
+          onPress={()=>{ router.push({pathname:'/business-detail',
+            params:{
+              business:JSON.stringify(item)
+            }
+          })}}
+        style={{ width: 230, marginRight: 10, 
             borderRadius:15,
             backgroundColor:Colors.WHITE
         }}>
@@ -109,7 +118,7 @@ export default function PopularBusinessList() {
         </View>
   
           </View>
-        </View>
+        </TouchableOpacity>
 
       )}
     />

@@ -1,5 +1,4 @@
-import { View, Text,TouchableOpacity, ScrollView, ToastAndroid } from 'react-native'
-import React from 'react'
+import { View, Text,TouchableOpacity, ToastAndroid } from 'react-native'
 import Colors from '@/services/Colors'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter , useLocalSearchParams} from 'expo-router'
@@ -8,7 +7,7 @@ import ActionButtonSection from '../components/BusinessDetailScreen/ActionButton
 import BusinessDescription from '../components/BusinessDetailScreen/BusinessDescription'
 import { axiosClient } from '@/services/GlobalApi';
 import { useUser } from '@clerk/clerk-expo';
-import {useEffect,useState} from 'react'
+import React, {useEffect,useState} from 'react'
 
 
 
@@ -21,9 +20,10 @@ export default function BusinessDetail() {
   const [isfavDetail,setIsFavDetail]=useState<{documentId:string}>()
   
 const MarkAsFavorite = async () => {
+
   try {
-    if (isFav && isfavDetail?.id) {
-      await axiosClient.delete('/user-favorites/' + isfavDetail.id)
+    if (isFav && isfavDetail?.documentId) {
+      await axiosClient.delete('/user-favorites/' + isfavDetail.documentId)
 
       setIsFav(false)   // 👈 IMPORTANT
       setIsFavDetail(undefined)
