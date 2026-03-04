@@ -19,7 +19,7 @@ export default function Header() {
         gap:10
 
       }}>
-        <Image source={{uri:user?.imageUrl}} style={{width:50,height:50,borderRadius:99}}></Image>
+        <Image source={{uri:user?.imageUrl}} style={{width:30,height:30,borderRadius:99}}></Image>
         <View>
             <Text style={styles.heading}>Welcome</Text>
             <Text style={[styles.heading,{fontFamily:'appFontBold'}]}>{user?.firstName}</Text>
@@ -27,10 +27,10 @@ export default function Header() {
         <View>
         </View>
       </View>
-         <Image source={require('../../../assets/images/bell.png')} style={{width:50,height:50}}/>
+         <Image source={require('../../../assets/images/bell.png')} style={{width:30,height:30}}/>
     </View>
     <TextInput placeholder='Search' style={{padding:15,
-      fontSize:20,
+      fontSize:15,
       backgroundColor:Colors.WHITE,
       borderRadius:99,
       paddingHorizontal:20,
@@ -44,7 +44,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   heading:{
-    fontSize:20,
+    fontSize:15,
     fontFamily:'appFont',
     color:Colors.WHITE
   }

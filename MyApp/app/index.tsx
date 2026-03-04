@@ -31,12 +31,18 @@ export default function Index() {
 const { startSSOFlow } = useSSO()
 const navigation=useNavigation()
 const router = useRouter()
-const {user}=useUser()
-console.log(user,'logged inn')
+const {user,isLoaded}=useUser()
+console.log(user,'logged in')
 useEffect(() => {
   navigation.setOptions({headerShown: false})
 }, [])
-
+useEffect(() => {
+    // If Clerk is loaded and we have a user, go straight to Home
+    if (isLoaded && user) {
+      console.log('User already logged in:', user.primaryEmailAddress?.emailAddress);
+      router.replace('/tabs/Home');
+    }
+  }, [user, isLoaded]);
 const onPress = useCallback(async () => {
     try {
       // Start the authentication process by calling `startSSOFlow()`
